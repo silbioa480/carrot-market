@@ -1,5 +1,6 @@
 import type {NextPage} from "next";
 import Layout from "@/components/layout";
+import Link from "next/link";
 
 const Profile: NextPage = () => {
   return (
@@ -16,13 +17,13 @@ const Profile: NextPage = () => {
             <span className={"font-medium text-gray-900"}>Steve Jebs</span>
 
             {/* Link to /profile/edit */}
-            <span className={"text-sm text-gray-700"}>Edit profile &rarr;</span>
+            <Link href={"/profile/edit"} className={"text-sm text-gray-700"}>Edit profile &rarr;</Link>
           </div>
         </div>
 
         <div className={"mt-10 flex justify-around"}>
           {/* 판매내역 */}
-          <div className={"flex flex-col items-center"}>
+          <Link href={"/profile/sold"} className={"flex flex-col items-center"}>
             <div className={"w-14 h-14 text-white bg-orange-500 rounded-full flex items-center justify-center"}>
               <svg
                 className="w-6 h-6"
@@ -40,10 +41,10 @@ const Profile: NextPage = () => {
               </svg>
             </div>
             <span className={"text-sm font-medium text-gray-700 mt-2"}>판매내역</span>
-          </div>
+          </Link>
 
           {/* 구매내역 */}
-          <div className={"flex flex-col items-center"}>
+          <Link href={"/profile/bought"} className={"flex flex-col items-center"}>
             <div className={"w-14 h-14 text-white bg-orange-500 rounded-full flex items-center justify-center"}>
               <svg
                 className="w-6 h-6"
@@ -61,10 +62,10 @@ const Profile: NextPage = () => {
               </svg>
             </div>
             <span className={"text-sm font-medium text-gray-700 mt-2"}>구매내역</span>
-          </div>
+          </Link>
 
           {/* 관심목록 */}
-          <div className={"flex flex-col items-center"}>
+          <Link href={"/profile/loved"} className={"flex flex-col items-center"}>
             <div className={"w-14 h-14 text-white bg-orange-500 rounded-full flex items-center justify-center"}>
               <svg
                 className="w-6 h-6"
@@ -82,18 +83,18 @@ const Profile: NextPage = () => {
               </svg>
             </div>
             <span className={"text-sm font-medium text-gray-700 mt-2"}>관심목록</span>
-          </div>
+          </Link>
         </div>
 
         {/* Comment */}
-        <div className={"mt-2"}>
-          <div className={"flex items-center"}>
+        <div className={"mt-12"}>
+          <div className={"flex items-center space-x-4"}>
             {/* Profile Image */}
-            <div className={"w-12 h-12 rounded-full bg-slate-400 space-x-4"}/>
+            <div className={"w-12 h-12 rounded-full bg-slate-500"}/>
 
             <div>
               {/* User Name */}
-              <h4 className={"text-sm font-bold text-gray-900"}>니꼬</h4>
+              <h4 className={"text-sm font-bold text-gray-800"}>니꼬</h4>
 
               {/* Star */}
               <div className={"flex items-center"}>

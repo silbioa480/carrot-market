@@ -1,6 +1,7 @@
 import React from "react";
 import {cls} from "@/libs/utils";
 import Link from "next/link";
+import {useRouter} from "next/router";
 
 interface LayoutProps {
   title?: string;
@@ -10,17 +11,48 @@ interface LayoutProps {
 }
 
 export default function Layout({title, canGoBack, hasTabBar, children}: LayoutProps) {
+  const router = useRouter();
+  const onClick = () => {
+    router.back();
+  }
+
   return (
     <div>
       {/* Header */}
       <div
-        className={"bg-white w-full max-w-xl text-lg font-medium py-3 fixed text-gray-800 border-b top-0 " +
-          "flex justify-center items-center"}>
-        {title ? <span>{title}</span> : null}
+        className={"bg-white w-full h-12 max-w-xl justify-center text-lg px-10 font-medium  fixed text-gray-800 border-b " +
+          "top-0  flex items-center"}>
+
+        {/* 뒤로가기 버튼 */}
+        {canGoBack ?
+          <button onClick={onClick} className="absolute left-4">
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M15 19l-7-7 7-7"
+              ></path>
+            </svg>
+          </button>
+          : null}
+
+        {/* 타이틀 */}
+        {title ?
+          <span className={cls(canGoBack ? "mx-auto" : "", "")}>
+            {title}
+          </span>
+          : null}
       </div>
 
       {/* Body */}
-      <div className={cls("pt-16", hasTabBar ? "pb-20" : "")}>
+      <div className={cls("pt-12", hasTabBar ? "pb-24" : "")}>
         {children}
       </div>
 
@@ -30,7 +62,12 @@ export default function Layout({title, canGoBack, hasTabBar, children}: LayoutPr
           className={"bg-white max-w-xl text-gray-700 border-t fixed bottom-0 w-full px-10 pb-5 pt-3 flex justify-between text-xs"}>
           {/* 홈 */}
           <Link href={"/"}>
-            <div className={"flex flex-col items-center space-y-2"}>
+            <div className={cls(
+              "flex flex-col items-center space-y-2 ",
+              router.pathname === "/"
+                ? "text-orange-500"
+                : "hover:text-gray-500 transition-colors"
+            )}>
               <svg
                 className="w-6 h-6"
                 fill="none"
@@ -51,7 +88,12 @@ export default function Layout({title, canGoBack, hasTabBar, children}: LayoutPr
 
           {/* 동네생활 */}
           <Link href="/community">
-            <div className="flex flex-col items-center space-y-2">
+            <div className={cls(
+              "flex flex-col items-center space-y-2 ",
+              router.pathname === "/community"
+                ? "text-orange-500"
+                : "hover:text-gray-500 transition-colors"
+            )}>
               <svg
                 className="w-6 h-6"
                 fill="none"
@@ -72,7 +114,12 @@ export default function Layout({title, canGoBack, hasTabBar, children}: LayoutPr
 
           {/* 채팅 */}
           <Link href="/chats">
-            <div className="flex flex-col items-center space-y-2">
+            <div className={cls(
+              "flex flex-col items-center space-y-2 ",
+              router.pathname === "/chats"
+                ? "text-orange-500"
+                : "hover:text-gray-500 transition-colors"
+            )}>
               <svg
                 className="w-6 h-6"
                 fill="none"
@@ -93,7 +140,12 @@ export default function Layout({title, canGoBack, hasTabBar, children}: LayoutPr
 
           {/* 라이브 */}
           <Link href="/live">
-            <div className="flex flex-col items-center space-y-2">
+            <div className={cls(
+              "flex flex-col items-center space-y-2 ",
+              router.pathname === "/live"
+                ? "text-orange-500"
+                : "hover:text-gray-500 transition-colors"
+            )}>
               <svg
                 className="w-6 h-6"
                 fill="none"
@@ -114,7 +166,12 @@ export default function Layout({title, canGoBack, hasTabBar, children}: LayoutPr
 
           {/* 나의 캐럿 */}
           <Link href="/profile">
-            <div className="flex flex-col items-center space-y-2">
+            <div className={cls(
+              "flex flex-col items-center space-y-2 ",
+              router.pathname === "/profile"
+                ? "text-orange-500"
+                : "hover:text-gray-500 transition-colors"
+            )}>
               <svg
                 className="w-6 h-6"
                 fill="none"

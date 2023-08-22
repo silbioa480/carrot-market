@@ -1,5 +1,6 @@
 import {NextPage} from "next";
 import Layout from "@/components/layout";
+import Link from "next/link";
 
 const Index: NextPage = () => {
   return (
@@ -7,7 +8,7 @@ const Index: NextPage = () => {
       <div className={"py-10 divide-y-[1px]"}>
         {[1, 1, 1, 1, 1, 1, 1].map((_, i) => (
           // Chat
-          <div key={i} className={"flex px-4 cursor-pointer py-3 items-center space-x-3"}>
+          <Link href={`/chars/${i}}`} key={i} className={"flex px-4 cursor-pointer py-3 items-center space-x-3"}>
             {/* User Profile Image*/}
             <div className={"w-12 h-12 rounded-full bg-slate-300"}/>
             <div>
@@ -15,9 +16,9 @@ const Index: NextPage = () => {
               <p className={"text-gray-700"}>Steve Jebs</p>
 
               {/* Latest Chat */}
-              <p className={"text-sm text-gray-700"}>See you tomorrow in the corner at 2pm!</p>
+              <p className={"text-sm text-gray-500"}>See you tomorrow in the corner at 2pm!</p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </Layout>
