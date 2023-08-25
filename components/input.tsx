@@ -1,16 +1,21 @@
+import type {UseFormRegisterReturn} from "react-hook-form";
+
 interface InputProps {
   label: string;
   name: string;
   kind?: "text" | "phone" | "price";
-
-  [key: string]: any;
+  type: string;
+  required?: Boolean
+  register: UseFormRegisterReturn;
 }
 
 export default function Input({
                                 label,
                                 name,
                                 kind = "text",
-                                ...rest
+                                type,
+                                required,
+                                register
                               }: InputProps) {
   return (
     <div>
@@ -27,7 +32,9 @@ export default function Input({
         <div className="rounded-md relative flex  items-center shadow-sm">
           <input
             id={name}
-            {...rest}
+            type={type}
+            required={required != undefined}
+            {...register}
             className="appearance-none w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500"
           />
         </div>
@@ -41,7 +48,9 @@ export default function Input({
           </div>
           <input
             id={name}
-            {...rest}
+            type={type}
+            required={required != undefined}
+            {...register}
             className="appearance-none pl-7 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500"
           />
           <div className="absolute right-0 pointer-events-none pr-3 flex items-center">
@@ -59,7 +68,9 @@ export default function Input({
           </span>
           <input
             id={name}
-            {...rest}
+            type={type}
+            required={required != undefined}
+            {...register}
             className="appearance-none w-full px-3 py-2 border border-gray-300 rounded-md rounded-l-none shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500"
           />
         </div>
